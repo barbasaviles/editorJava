@@ -128,12 +128,18 @@ public class EditorController implements ActionListener {
         if (e.getSource() == view.getBtnEditar()) {
             editando = true;
             index = view.getListDocumento().getSelectedIndex();
-            documentacionEnBlanco.getDocumentos().get(index).visualiza();
+            view.getData().setText(documentacionEnBlanco.getDocumentos().get(index).getContenido());
         }
 
         if (e.getSource() == view.getBtnImprimir()) {
             Integer indexDoc = view.getListDocumento().getSelectedIndex();
             documentacionEnBlanco.getDocumentos().get(indexDoc).imprime();
+        }
+        
+        if (e.getSource() == view.getBtnEliminar()) {
+            Integer indexDoc = view.getListDocumento().getSelectedIndex();
+            documentacionEnBlanco.excluye(documentacionEnBlanco.getDocumentos().get(indexDoc));
+            reloadDocumentos();
         }
     }
 }
